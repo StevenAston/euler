@@ -30,10 +30,10 @@ int isPrime (int num) {
 int main() {
 	int i = 3;
 	int numberOfPrimes = 0;
-	long long int total = 0;
+	int64_t total = 1;
 	while (i < 2000000) {
 		if (isPrime(i) == 1) {
-			total+=i;
+			total=total*i;
 			++numberOfPrimes;
 			cout << i << " of 2,000,000 \nTotal = " << total << "\n\n";
 		}
