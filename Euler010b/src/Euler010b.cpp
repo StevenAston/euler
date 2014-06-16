@@ -13,6 +13,8 @@
 #include <iostream>
 using namespace std;
 #include <cmath>
+#include <iostream>
+#include <fstream>
 #include "InfInt.h"
 
 int isPrime (int num) {
@@ -29,6 +31,9 @@ int isPrime (int num) {
 }
 
 int main() {
+	ofstream outputFile;
+	outputFile.open("primesum.txt");
+
 	int i = 3;
 	int numberOfPrimes = 0;
 	int output = 128;
@@ -45,4 +50,7 @@ int main() {
 		i=i+2;
 	}
 	cout << "\n\nTotal of all primes below 2,000,000 = " << total;
+	outputFile << total;
+	outputFile.close();
+	cout << "Written to file";
 }
