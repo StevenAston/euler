@@ -36,7 +36,7 @@ int main() {
 
 	int i = 3;
 	int numberOfPrimes = 0;
-	int output = 128;
+	int output = 32;
 	InfInt total = 1;
 	while (i < 2000000) {
 		if (isPrime(i) == 1) {
