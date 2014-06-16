@@ -13,6 +13,7 @@
 #include <iostream>
 using namespace std;
 #include <cmath>
+#include "InfInt.h"
 
 int isPrime (int num) {
 	int i = 2;
@@ -30,12 +31,15 @@ int isPrime (int num) {
 int main() {
 	int i = 3;
 	int numberOfPrimes = 0;
-	int64_t total = 1;
+	int output = 128;
+	InfInt total = 1;
 	while (i < 2000000) {
 		if (isPrime(i) == 1) {
 			total=total*i;
 			++numberOfPrimes;
-			cout << i << " of 2,000,000 \nTotal = " << total << "\n\n";
+			if (numberOfPrimes % output == 0) {
+				cout << i << " of 2,000,000\n";
+			}
 		}
 		//if (i % == 0) {}
 		i=i+2;
