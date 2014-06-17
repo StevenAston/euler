@@ -4,15 +4,18 @@
 // Version     :
 // Copyright   : 
 // Description : The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
-//				 Find the sum of all the primes below two million.
+//				 Find the product of all the primes below two million.
 //
-//				 Answer: 142913828922
+//				 Answer is about 849,000 digits
 //
 //============================================================================
 
 #include <iostream>
 using namespace std;
 #include <cmath>
+#include <iostream>
+#include <fstream>
+#include "InfInt.h"
 
 int isPrime (int num) {
 	int i = 2;
@@ -28,17 +31,32 @@ int isPrime (int num) {
 }
 
 int main() {
-	int i = 3;
+	ofstream outputFile;
+	outputFile.open("primes.txt");
+	long long i = 3;
 	int numberOfPrimes = 0;
-	long long int total = 0;
-	while (i < 2000000) {
+	int searchLimit = pow(2,30);
+	int output = searchLimit/pow(2,18);
+	string buffer = "";
+	string writeString;
+	while (i < searchLimit) {
 		if (isPrime(i) == 1) {
-			total+=i;
 			++numberOfPrimes;
-			cout << i << " of 2,000,000 \nTotal = " << total << "\n\n";
+			writeString = std::to_string(i);
+			buffer.append(writeString);
+			buffer.append(", ");
+			if (numberOfPrimes % output == 0) {
+				buffer.append("\n");
+				outputFile << buffer;
+				buffer = "";
+				cout << i << " of " << searchLimit << " - " << ((i*100)/searchLimit) << "%\n";
+			}
 		}
 		//if (i % == 0) {}
 		i=i+2;
 	}
-	cout << "\n\nTotal of all primes below 2,000,000 = " << total;
+	cout << "\n\nTotal of all primes below " << searchLimit << " = ";
+	outputFile << buffer;
+	outputFile.close();
+	cout << "Written to file\n";
 }
